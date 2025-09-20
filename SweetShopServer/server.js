@@ -11,6 +11,8 @@ import dotenv from 'dotenv';
 
 // Import routes
 import userRoutes from './src/routes/userRoutes.js';
+import adminRoutes from './src/routes/adminRoutes.js';
+import sweetRoutes from './src/routes/sweetRoutes.js';
 
 // Import middleware
 import { errorHandler } from './src/middleware/errorHandler.js';
@@ -70,6 +72,8 @@ app.get('/health', (req, res) => {
 
 // API routes
 app.use('/api/users', userRoutes);
+app.use('/api/admin', adminRoutes);
+app.use('/api/sweets', sweetRoutes);
 
 // 404 handler
 app.use(notFound);

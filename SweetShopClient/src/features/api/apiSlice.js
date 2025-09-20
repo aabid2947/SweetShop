@@ -70,7 +70,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithReauth,
-  tagTypes: ['User', 'Profile'],
+  tagTypes: ['User', 'Profile', 'Sweet', 'Admin'],
   endpoints: (builder) => ({
     // Authentication endpoints
     register: builder.mutation({
@@ -142,6 +142,156 @@ export const apiSlice = createApi({
         body: passwordData,
       }),
     }),
+
+    // Sweet endpoints
+    getAllSweets: builder.query({
+      query: (params = {}) => ({
+        url: '/sweets',
+        params,
+      }),
+      providesTags: ['Sweet'],
+    }),
+
+    getSweetById: builder.query({
+      query: (id) => `/sweets/${id}`,
+      providesTags: (result, error, id) => [{ type: 'Sweet', id }],
+    }),
+
+    searchSweets: builder.query({
+      query: (params) => ({
+        url: '/sweets/search',
+        params,
+      }),
+      providesTags: ['Sweet'],
+    }),
+
+    getSweetsByCategory: builder.query({
+      query: ({ category, ...params }) => ({
+        url: `/sweets/category/${category}`,
+        params,
+      }),
+      providesTags: ['Sweet'],
+    }),
+
+    getFeaturedSweets: builder.query({
+      query: (params = {}) => ({
+        url: '/sweets/featured',
+        params,
+      }),
+      providesTags: ['Sweet'],
+    }),
+
+    getDiscountedSweets: builder.query({
+      query: (params = {}) => ({
+        url: '/sweets/discounted',
+        params,
+      }),
+      providesTags: ['Sweet'],
+    }),
+
+    getSweetCategories: builder.query({
+      query: () => '/sweets/categories',
+      providesTags: ['Sweet'],
+    }),
+
+    addSweetReview: builder.mutation({
+      query: ({ id, ...reviewData }) => ({
+        url: `/sweets/${id}/review`,
+        method: 'POST',
+        body: reviewData,
+      }),
+      invalidatesTags: (result, error, { id }) => [{ type: 'Sweet', id }],
+    }),
+
+    // User sweet creation
+    createSweetByUser: builder.mutation({
+      query: (sweetData) => ({
+        url: '/sweets/user/create',
+        method: 'POST',
+        body: sweetData,
+      }),
+      invalidatesTags: ['Sweet'],
+    }),
+
+    // Admin endpoints
+    loginAdmin: builder.mutation({
+      query: (credentials) => ({
+        url: '/admin/login',
+        method: 'POST',
+        body: credentials,
+      }),
+    }),
+
+    registerAdmin: builder.mutation({
+      query: (adminData) => ({
+        url: '/admin/register',
+        method: 'POST',
+        body: adminData,
+      }),
+      invalidatesTags: ['Admin'],
+    }),
+
+    getAdminProfile: builder.query({
+      query: () => '/admin/profile',
+      providesTags: ['Admin'],
+    }),
+
+    updateAdminProfile: builder.mutation({
+      query: (profileData) => ({
+        url: '/admin/profile',
+        method: 'PUT',
+        body: profileData,
+      }),
+      invalidatesTags: ['Admin'],
+    }),
+
+    logoutAdmin: builder.mutation({
+      query: (body) => ({
+        url: '/admin/logout',
+        method: 'POST',
+        body: body || {},
+      }),
+    }),
+
+    getAllAdmins: builder.query({
+      query: (params = {}) => ({
+        url: '/admin/all',
+        params,
+      }),
+      providesTags: ['Admin'],
+    }),
+
+    // Admin sweet management
+    createSweet: builder.mutation({
+      query: (sweetData) => ({
+        url: '/sweets',
+        method: 'POST',
+        body: sweetData,
+      }),
+      invalidatesTags: ['Sweet'],
+    }),
+
+    updateSweet: builder.mutation({
+      query: ({ id, ...sweetData }) => ({
+        url: `/sweets/${id}`,
+        method: 'PUT',
+        body: sweetData,
+      }),
+      invalidatesTags: (result, error, { id }) => [{ type: 'Sweet', id }, 'Sweet'],
+    }),
+
+    deleteSweet: builder.mutation({
+      query: (id) => ({
+        url: `/sweets/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Sweet'],
+    }),
+
+    getSweetStats: builder.query({
+      query: () => '/sweets/admin/stats',
+      providesTags: ['Sweet'],
+    }),
   }),
 })
 
@@ -158,4 +308,29 @@ export const {
   useGetProfileQuery,
   useUpdateProfileMutation,
   useChangePasswordMutation,
+
+  // Sweet hooks
+  useGetAllSweetsQuery,
+  useGetSweetByIdQuery,
+  useSearchSweetsQuery,
+  useGetSweetsByCategoryQuery,
+  useGetFeaturedSweetsQuery,
+  useGetDiscountedSweetsQuery,
+  useGetSweetCategoriesQuery,
+  useAddSweetReviewMutation,
+  useCreateSweetByUserMutation,
+
+  // Admin hooks
+  useLoginAdminMutation,
+  useRegisterAdminMutation,
+  useGetAdminProfileQuery,
+  useUpdateAdminProfileMutation,
+  useLogoutAdminMutation,
+  useGetAllAdminsQuery,
+
+  // Admin sweet management hooks
+  useCreateSweetMutation,
+  useUpdateSweetMutation,
+  useDeleteSweetMutation,
+  useGetSweetStatsQuery,
 } = apiSlice

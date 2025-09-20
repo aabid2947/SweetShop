@@ -5,7 +5,7 @@ import { Bell, Globe, Menu, User, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
 import { cn } from "../lib/utils";
 import { selectIsAuthenticated, selectCurrentUser, logoutUser } from "../features/auth/authSlice";
-import NotificationBell from "./NotificationBell";
+// import NotificationBell from "./NotificationBell";
 import Logo from "../assets/logo.svg"
 function SweetShopLogo() {
   return (
@@ -23,6 +23,7 @@ function DesktopNav({ className, isAuthenticated }) {
   const linksRef = useRef({});
 
   const navItems = [
+    { path: '/sweets', label: 'Sweet Shop' },
     ...(isAuthenticated ? [
       { path: '/dashboard', label: 'Dashboard' }
     ] : [])
@@ -104,6 +105,7 @@ function MobileNav({ isAuthenticated, currentUser, handleLogout, setMobileOpen }
   const location = useLocation();
 
   const navItems = [
+    { path: '/sweets', label: 'Sweet Shop' },
     ...(isAuthenticated ? [
       { path: '/dashboard', label: 'Dashboard' }
     ] : [])
@@ -139,6 +141,20 @@ function MobileNav({ isAuthenticated, currentUser, handleLogout, setMobileOpen }
       
       {isAuthenticated ? (
         <div className="flex flex-col gap-2">
+          {currentUser?.role === 'admin' && (
+            <Link
+              to="/admin/dashboard"
+              className={cn(
+                "flex items-center gap-2 text-sm font-semibold transition-all duration-300 text-left py-3 px-4 rounded-lg",
+                location.pathname.startsWith('/admin')
+                  ? "text-orange-600 bg-orange-50"
+                  : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50"
+              )}
+              onClick={() => setMobileOpen(false)}
+            >
+              Admin Panel
+            </Link>
+          )}
           <button
             onClick={() => { handleLogout(); setMobileOpen(false); }}
             className="flex items-center gap-2 text-sm font-semibold text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 text-left py-3 px-4 rounded-lg transition-all duration-300"
@@ -232,7 +248,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-2 md:flex">
           {isAuthenticated ? (
             <>
-              <NotificationBell />
+              {/* <NotificationBell /> */}
               <button 
                 type="button" 
                 className="text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-all duration-300 p-2.5 rounded-lg hover:scale-105" 
@@ -276,6 +292,20 @@ export function SiteHeader() {
                       >
                         Dashboard
                       </Link>
+                      {currentUser?.role === 'admin' && (
+                        <Link
+                          to="/admin/dashboard"
+                          className={cn(
+                            "block px-4 py-3 text-sm font-['Inter',sans-serif] font-medium transition-all duration-200 rounded-lg mx-2",
+                            location.pathname.startsWith('/admin')
+                              ? "text-orange-600 bg-orange-50"
+                              : "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900"
+                          )}
+                          onClick={() => setUserMenuOpen(false)}
+                        >
+                          Admin Panel
+                        </Link>
+                      )}
                       <hr className="my-2 border-zinc-200" />
                       <button
                         onClick={handleLogout}

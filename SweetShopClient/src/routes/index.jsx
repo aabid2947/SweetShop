@@ -8,6 +8,9 @@ import ProtectedAdminRoutes from "./ProtectedAdminRoutes.jsx";
 import HomePage from "../pages/HomePage.jsx";
 import LoginPage from "../pages/LoginPage.jsx";
 import SignUpPage from "../pages/SignUpPage.jsx";
+import SweetsPage from "../pages/SweetsPage.jsx";
+import SweetDetailsPage from "../pages/SweetDetailsPage.jsx";
+import UserSweetForm from "../pages/UserSweetForm.jsx";
 
 const AppRoutes = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -30,6 +33,8 @@ const AppRoutes = () => {
         {/* Public pages accessible to everyone */}
         <Route path="/" element={<HomePage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/sweets" element={<SweetsPage />} />
+        <Route path="/sweets/:id" element={<SweetDetailsPage />} />
       
         {/* Authentication routes - only accessible when not logged in */}
         <Route path="/login" element={isAuthenticated ? <div>Dashboard Placeholder</div> : <LoginPage />} />
@@ -37,6 +42,7 @@ const AppRoutes = () => {
       
         {/* Protected user routes */}
         <Route path="/dashboard/*" element={<ProtectedRoutes />} />
+        <Route path="/user/sweet/new" element={isAuthenticated ? <UserSweetForm /> : <LoginPage />} />
       
         {/* Protected admin routes */}
         <Route path="/admin/*" element={<ProtectedAdminRoutes />} />
