@@ -1,0 +1,10 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sweetshop-gradient" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop stop-color="#6D6AFF"/>
+      <stop offset="1" stop-color="#D69A5C"/>
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="12" fill="url(#sweetshop-gradient)"/>
+  <path d="M14 14 H 34 M 24 14 V 34 M 17 24 H 31" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,14 @@
+// tsconfig.node.json
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "isolatedModules": false
+  },
+  "include": [
+    "vite.config.ts",
+    "vite.config.js",
+    "scripts/**/*.ts"
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "fontSystem": {
+    "fontFamily": {
+      "primary": "'Inter', sans-serif",
+      "fallback": "sans-serif"
+    },
+    "elements": {
+      "badge": {
+        "fontFamily": "system default (not specified)",
+        "sizes": {
+          "mobile": "14px",
+          "tablet": "14px", 
+          "desktop": "14px"
+        },
+        "weights": {
+          "all": 500
+        },
+        "lineHeight": "normal",
+        "tailwindClasses": "text-sm font-medium"
+      },
+      "mainHeading": {
+        "fontFamily": "'Inter', sans-serif",
+        "sizes": {
+          "mobile": "20px",
+          "tablet": "36px",
+          "desktop": "60px"
+        },
+        "weights": {
+          "all": 700
+        },
+        "lineHeight": "tight",
+        "tailwindClasses": "font-['Inter'] text-xl md:text-4xl lg:text-6xl font-bold tracking-tight"
+      },
+      "gradientText": {
+        "fontFamily": "'Inter', sans-serif (inherited)",
+        "sizes": {
+          "mobile": "20px",
+          "tablet": "36px", 
+          "desktop": "60px"
+        },
+        "weights": {
+          "all": 700
+        },
+        "lineHeight": "tight",
+        "tailwindClasses": "bg-gradient-to-r from-blue-400 via-purple-400 to-amber-400 bg-clip-text text-transparent"
+      },
+      "subtitle": {
+        "fontFamily": "'Inter', sans-serif",
+        "sizes": {
+          "mobile": "18px",
+          "tablet": "20px",
+          "desktop": "24px"
+        },
+        "weights": {
+          "all": 500
+        },
+        "lineHeight": "relaxed (1.625)",
+        "tailwindClasses": "font-['Inter'] text-lg md:text-xl lg:text-2xl font-medium leading-relaxed"
+      },
+      "ctaButtonPrimary": {
+        "fontFamily": "system default (not specified)",
+        "sizes": {
+          "mobile": "16px",
+          "tablet": "16px",
+          "desktop": "16px"
+        },
+        "weights": {
+          "all": 600
+        },
+        "lineHeight": "normal",
+        "tailwindClasses": "text-base font-semibold"
+      },
+      "ctaButtonSecondary": {
+        "fontFamily": "system default (not specified)",
+        "sizes": {
+          "mobile": "16px",
+          "tablet": "16px",
+          "desktop": "16px"
+        },
+        "weights": {
+          "all": 600
+        },
+        "lineHeight": "normal", 
+        "tailwindClasses": "text-base font-semibold"
+      },
+      "ctaNote": {
+        "fontFamily": "'Inter', sans-serif",
+        "sizes": {
+          "mobile": "14px",
+          "tablet": "14px",
+          "desktop": "14px"
+        },
+        "weights": {
+          "all": 500
+        },
+        "lineHeight": "normal",
+        "tailwindClasses": "font-['Inter'] text-sm font-medium"
+      },
+      "centerTileText": {
+        "fontFamily": "'Inter', sans-serif",
+        "sizes": {
+          "mobile": "24px",
+          "tablet": "24px",
+          "desktop": "24px"
+        },
+        "weights": {
+          "all": 700
+        },
+        "lineHeight": "normal",
+        "tailwindClasses": "font-['Inter'] text-2xl font-bold"
+      }
+    },
+    "breakpoints": {
+      "mobile": "default (below 768px)",
+      "tablet": "md: (768px and above)",
+      "desktop": "lg: (1024px and above)"
+    },
+    "colorSystem": {
+      "textColors": {
+        "primary": "text-white",
+        "secondary": "text-slate-300", 
+        "muted": "text-slate-400",
+        "gradient": "bg-gradient-to-r from-blue-400 via-purple-400 to-amber-400 bg-clip-text text-transparent"
+      }
+    },
+    "summary": {
+      "totalFontFamilies": 2,
+      "fontFamiliesUsed": [
+        "'Inter', sans-serif (explicit)",
+        "system default sans-serif (implicit)"
+      ],
+      "responsiveElements": [
+        "mainHeading",
+        "subtitle"
+      ],
+      "fixedSizeElements": [
+        "badge",
+        "ctaButtonPrimary", 
+        "ctaButtonSecondary",
+        "ctaNote",
+        "centerTileText"
+      ]
+    },
+    "recommendations": {
+      "consistency": "Consider applying 'Inter' font family to all text elements for visual consistency",
+      "hierarchy": "Current font sizes create good visual hierarchy: 60px -> 24px -> 20px -> 16px -> 14px",
+      "performance": "Inter font should be preloaded for better performance",
+      "accessibility": "Font sizes meet accessibility guidelines with minimum 14px text"
+    }
+  }
+}
